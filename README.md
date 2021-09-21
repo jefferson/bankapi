@@ -10,7 +10,7 @@ The API consists of two endpoints ``GET v1/balance``, and ``POST v1/event``.
 
 For more details about contract, please, visit the documentation below:
 
-``http://localhost:3333/v1/swagger/index.html``
+``https://localhost:5001/index.html``
 
 ## Durability
 

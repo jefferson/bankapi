@@ -3,7 +3,7 @@ using Domain.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace BankInfrastructure
+namespace BankApplication
 {
     public class BalanceRepository : IBalanceRepository
     {
@@ -43,13 +43,10 @@ namespace BankInfrastructure
             {
                 throw e;
             }
-        }
+        }        
 
-        public void Dispose() =>  _dataBucket.Dispose();
+        public void Create(long id) => _dataBucket.Create(id);
 
-        public void Create(long id)
-        {
-            _dataBucket.Create(id);
-        }
+        public void Dispose() => _dataBucket.Dispose();
     }
 }

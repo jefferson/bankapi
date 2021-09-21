@@ -1,3 +1,5 @@
+using BankApplication;
+using BankInfrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,7 +31,10 @@ namespace BankApi
         {
 
             services.AddControllers();
-            services.AddBankApiDependencies();
+
+            services.AddInfrastructure();
+            services.AddApplication();
+            services.AddApi();
 
         }
 

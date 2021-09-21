@@ -4,11 +4,11 @@ using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class ApiServiceCollection
+    public static class DependencyInjection
     {
 
-        public static IServiceCollection AddBankApiDependencies(this IServiceCollection services)
-        {
+        public static IServiceCollection AddApi(this IServiceCollection services)
+        {            
             services.AddSwaggerGen(c =>
             {
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
