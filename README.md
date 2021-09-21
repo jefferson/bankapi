@@ -1,16 +1,16 @@
 # The Bank Api
 
-The API consists of two endpoints ``GET /balance``, and ``POST /event``.
+The API consists of two endpoints ``GET v1/balance``, and ``POST v1/event``.
 
-| Verb | path    | Describe                          |
-|------|---------|-----------------------------------|
-| Post | reset   | Reset state before starting tests |
-| Get  | balance | Get balance from account          |
-| Post | event   | Account Management Events         |
+| Verb | Path       | Describe                          |
+|------|------------|-----------------------------------|
+| Post | v1/reset   | Reset state before starting tests |
+| Get  | v1/balance | Get balance from account          |
+| Post | v1/event   | Account Management Events         |
 
 For more details about contract, please, visit the documentation below:
 
-``http://localhost:3333/swagger/index.html``
+``http://localhost:3333/v1/swagger/index.html``
 
 ## Durability
 
