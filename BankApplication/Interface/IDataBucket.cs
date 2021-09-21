@@ -5,12 +5,14 @@ using System.Text;
 
 namespace BankApplication.Interface
 {
-    public interface IBalanceRepository : IDisposable
+    public interface IDataBucket: IDisposable
     {
-        Balance Get(long id);
+        bool Contains(long id);
+
+        void SetValue(long id, decimal balance_value);
 
         void Create(long id);
 
-        void Set(long id, Balance balance);
+        Balance Get(long id);
     }
 }
