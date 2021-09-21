@@ -1,3 +1,7 @@
+using System;
+using System.IO;
+using System.Reflection;
+
 namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ApiServiceCollection
@@ -5,7 +9,13 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddBankApiDependencies(this IServiceCollection services)
         {
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+
             return services;
         }
 

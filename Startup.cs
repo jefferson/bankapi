@@ -8,7 +8,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace BankApi
@@ -44,6 +46,7 @@ namespace BankApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "The Bank Api");
+                c.RoutePrefix = string.Empty;
             });
 
             app.UseHttpsRedirection();
