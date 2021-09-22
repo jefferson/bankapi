@@ -1,4 +1,4 @@
-﻿using BankApplication.Account.Helper;
+﻿using BankApplication.AccountCommands.Helper;
 using BankApplication.Interface;
 
 namespace BankApplication.AccountCommands
@@ -12,7 +12,7 @@ namespace BankApplication.AccountCommands
             this.accountRepository = accountRepository;
         }
 
-        public void ExecuteCommand(Command command, AccountEvent accountEvent)
+        public void ExecuteCommand(AccountEvent accountEvent, Command command)
         {
             command.Execute(accountRepository, accountEvent);
         }

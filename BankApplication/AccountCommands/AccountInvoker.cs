@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BankApplication.AccountCommands
 {
-    public class AccountInvoker
+    public class AccountInvoker : IAccountInvoker
     {
         private readonly IAccountReceiver _accountReceiver;
         private (AccountEvent accountEvent, Command command) _action;

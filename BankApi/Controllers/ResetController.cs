@@ -1,4 +1,5 @@
-﻿using BankApplication.Interface;
+﻿using BankApplication.AccountCommands.Helper;
+using BankApplication.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,7 +22,7 @@ namespace BankApi.Controllers
 
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
-        public IActionResult Post()
+        public IActionResult Post(AccountEvent accountEvent)
         {
             _balanceRepository.Dispose();
            return Ok("OK");
