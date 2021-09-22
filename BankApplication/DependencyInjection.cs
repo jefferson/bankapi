@@ -9,8 +9,10 @@ namespace BankApplication
     public static class DependencyInjection
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
-        {
+        {            
+            
             services.AddSingleton<IBalanceRepository, BalanceRepository>();
+            services.AddSingleton<IAccountRepository, AccountRepository>();
 
             return services;
         }

@@ -7,6 +7,8 @@ namespace BankApplication.Interface
 {
     public interface IAccountRepository: IDisposable
     {
-        void CreateAccount(Balance balance);
+        void Create(long id);
+
+        void UpdateBalance(long id, Balance balance);
     }
 }
