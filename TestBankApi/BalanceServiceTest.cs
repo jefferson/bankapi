@@ -42,6 +42,24 @@ namespace TestBankApi
             balance.Get(1).balance_value.Should().Be(10);
         }
 
+        [Fact]
+        public void AllBalanceShouldBeDisposableTest()
+        {
+            var balance = mockRepository.Object;
+
+            balance.Create(1);
+
+            balance.Set(1, new Domain.Entities.Balance()
+            {
+                balance_value = 10
+            });
+
+            balance.Dispose();
+
+            Invoking(() => balance.Get(1)).Should().Throw<KeyNotFoundException>();
+
+        }
+
         public void Dispose()
         {
         }
