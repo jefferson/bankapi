@@ -6,5 +6,6 @@ namespace BankApplication.Interface
     {
         void ExecuteCommand();
         void SetCommand(AccountEvent accountEvent);
+        object GetResult();
     }
 }

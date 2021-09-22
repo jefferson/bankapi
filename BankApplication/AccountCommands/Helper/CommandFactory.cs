@@ -8,7 +8,16 @@ namespace BankApplication.AccountCommands.Helper
     {
         public static (AccountEvent accountEvent, Command command) Build(AccountEvent accountEvent)
         {
-            var command = (Command)new DepositCommand();
+            Command command = null;
+
+            switch (accountEvent.Type)
+            {
+                case "deposit":
+                    command = new DepositCommand();
+                    break;
+                default:
+                    break;
+            }
 
             return (accountEvent, command);
         }

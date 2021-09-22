@@ -1,11 +1,8 @@
-﻿using BankApi.Dtos;
+﻿using BankApi.Dtos.Request;
+using BankApi.Dtos.Response;
 using BankApplication.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BankApi.Controllers
 {
@@ -21,8 +18,7 @@ namespace BankApi.Controllers
         }
 
         [HttpPost()]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
-        public IActionResult Post(EventDto account_event)
+        public IActionResult Post(EventRequest account_event)
         {
             _accountInvoker.SetCommand(new BankApplication.AccountCommands.Helper.AccountEvent()
             {
@@ -31,7 +27,7 @@ namespace BankApi.Controllers
 
             _accountInvoker.ExecuteCommand();
 
-            return Ok("OK");
+            return Ok(_accountInvoker.GetResult());
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using BankApplication.AccountCommands.Helper;
 using BankApplication.Interface;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using BankApplication.Response;
+using BankDomain.Entities;
+using System.Text.Json;
 
 namespace BankApplication.AccountCommands
 {
@@ -13,7 +13,19 @@ namespace BankApplication.AccountCommands
         //201 {"destination": {"id":"100", "balance":10}}
         public override void Execute(IAccountRepository accountRepository, AccountEvent accountEvent)
         {
-            throw new NotImplementedException();
+            var result = new CommandResponse()
+            {
+                Deposit = new DepositResponse()
+                {
+                    destination = new Destination()
+                    {
+                        id = 1,
+                        balance = 10
+                    }
+                }
+            };
+
+            this.Result = result.Deposit;
         }
     }
 }
