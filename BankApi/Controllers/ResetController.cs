@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BankApi.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ResetController : Controller
     {
@@ -24,13 +24,13 @@ namespace BankApi.Controllers
             this._logger = logger;
         }
 
-        [HttpPost()]
+        [HttpPost(), Produces("text/plain")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         public IActionResult Post()
         {
             _logger.LogInformation(SharedResource.ResetMessage);
             _balanceRepository.Dispose();
-           return Ok("OK");
+           return StatusCode(StatusCodes.Status200OK, "OK");
         }
     }
 }

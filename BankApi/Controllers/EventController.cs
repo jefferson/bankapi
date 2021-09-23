@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace BankApi.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class EventController : Controller
     {
