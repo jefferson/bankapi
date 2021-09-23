@@ -9,16 +9,18 @@ namespace BankApplication.AccountCommands
     public class AccountInvoker : IAccountInvoker
     {
         private readonly IAccountReceiver _accountReceiver;
+        private readonly ICommandFactory commandFactory;
         private (AccountEvent accountEvent, Command command) _action;
 
-        public AccountInvoker(IAccountReceiver accountReceiver)
+        public AccountInvoker(IAccountReceiver accountReceiver, ICommandFactory commandFactory)
         {
             this._accountReceiver = accountReceiver;
+            this.commandFactory = commandFactory;
         }
 
         public void SetCommand(AccountEvent accountEvent)
         {
-            _action = CommandFactory.Build(accountEvent);
+            _action = commandFactory.Build(accountEvent);
         }
 
         public void ExecuteCommand()

@@ -9,6 +9,7 @@ using FluentAssertions;
 using static FluentAssertions.FluentActions;
 using Moq;
 using BankApplication.Interface;
+using BankApplication.AccountCommands.Helper;
 
 namespace TestBankApi
 {
@@ -23,7 +24,8 @@ namespace TestBankApi
             balanceRepositoy = new BalanceRepository(dataBucket);
             var accountRepositoy = new AccountRepository(balanceRepositoy);
             var accountReceiver = new AccountReceiver(accountRepositoy);
-            accountInvoker = new AccountInvoker(accountReceiver);
+            var commandFactory = new CommandFactory();
+            accountInvoker = new AccountInvoker(accountReceiver, commandFactory);
         }
 
         [Fact]

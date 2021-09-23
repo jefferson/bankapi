@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using BankApplication.Interface;
 
 namespace BankApplication.AccountCommands.Helper
 {
-    public static class CommandFactory
+    public class CommandFactory : ICommandFactory
     {
-        public static (AccountEvent accountEvent, Command command) Build(AccountEvent accountEvent)
+        public (AccountEvent accountEvent, Command command) Build(AccountEvent accountEvent)
         {
             Command command = null;
 

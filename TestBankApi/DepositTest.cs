@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using FluentAssertions;
+using BankApplication.AccountCommands.Helper;
+
 namespace TestBankApi
 {
     public class DepositTest: IDisposable
@@ -21,7 +23,8 @@ namespace TestBankApi
             balanceRepositoy = new BalanceRepository(dataBucket);
             var accountRepositoy = new AccountRepository(balanceRepositoy);
             var accountReceiver = new AccountReceiver(accountRepositoy);
-            accountInvoker = new AccountInvoker(accountReceiver);
+            var commandFactory = new CommandFactory();
+            accountInvoker = new AccountInvoker(accountReceiver, commandFactory);
         }
 
         [Fact]
