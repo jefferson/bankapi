@@ -10,13 +10,13 @@ namespace BankApplication.AccountCommands.Helper
 
             switch (accountEvent.Type)
             {
-                case "transfer":
+                case EventEnum.Transfer:
                     command = new TransferCommand();
                     break;
-                case "withdraw":
+                case EventEnum.Withdraw:
                     command = new WithdrawCommand();
                     break;
-                case "deposit":
+                case EventEnum.Deposit:
                     command = new DepositCommand();
                     break;
                 default:

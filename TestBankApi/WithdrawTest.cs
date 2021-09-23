@@ -34,7 +34,7 @@ namespace TestBankApi
             var account_event = new BankApplication.AccountCommands.Helper.AccountEvent()
             {
                 Origin = "1",
-                Type = "withdraw",
+                Type = EventEnum.Withdraw,
                 Amount = 10
             };
 
@@ -50,7 +50,7 @@ namespace TestBankApi
             var account_event = new BankApplication.AccountCommands.Helper.AccountEvent()
             {
                 Destination = "1",
-                Type = "deposit",
+                Type = EventEnum.Deposit,
                 Amount = 10
             };
 
@@ -61,7 +61,7 @@ namespace TestBankApi
             account_event = new BankApplication.AccountCommands.Helper.AccountEvent()
             {
                 Origin = "1",
-                Type = "withdraw",
+                Type = EventEnum.Withdraw,
                 Amount = 5
             };
 
