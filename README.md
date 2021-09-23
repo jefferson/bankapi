@@ -56,7 +56,7 @@ info: Microsoft.Hosting.Lifetime[0]
 info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 info: Microsoft.Hosting.Lifetime[0]
-      Content root path: C:\Users\jeffe\source\repos\BankApi\BankApi
+      Content root path: ~\source\repos\BankApi\BankApi
 ```
 
 If you would like to run this API, please, visit the address below:
@@ -92,7 +92,7 @@ info: Microsoft.Hosting.Lifetime[0]
 info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 info: Microsoft.Hosting.Lifetime[0]
-      Content root path: C:\Users\jeffe\source\repos\BankApi\BankApi
+      Content root path: ~\source\repos\BankApi\BankApi
 ```
 
 Run the command bellow for start the application:
