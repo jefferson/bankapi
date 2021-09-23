@@ -2,6 +2,7 @@
 using BankApplication.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
 namespace BankApi.Controllers
@@ -11,10 +12,12 @@ namespace BankApi.Controllers
     public class EventController : Controller
     {
         private readonly IAccountInvoker _accountInvoker;
+        private readonly ILogger<EventController> _logger;
 
-        public EventController(IAccountInvoker accountInvoker)
+        public EventController(IAccountInvoker accountInvoker, ILogger<EventController> logger)
         {
             _accountInvoker = accountInvoker;
+            this._logger = logger;
         }
 
         [HttpPost()]
@@ -22,6 +25,8 @@ namespace BankApi.Controllers
         {            
             try
             {
+                _logger.LogInformation("Action called: type: {0}, Origin: {1}, Destination: {2}", account_event.Type, account_event.Origin, account_event.Destination);
+
                 _accountInvoker.SetCommand(new BankApplication.AccountCommands.Helper.AccountEvent()
                 {
                     Type = account_event.Type,
@@ -36,6 +41,8 @@ namespace BankApi.Controllers
             }
             catch (KeyNotFoundException e)
             {
+                _logger.LogInformation("KeyNotFound for action: type: {0}, Origin: {1}, Destination: {2}", account_event.Type, account_event.Origin, account_event.Destination);
+
                 return NotFound(0);
             }
         }

@@ -1,6 +1,7 @@
 ﻿using BankApplication.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
  
 namespace BankApi.Controllers
@@ -10,10 +11,12 @@ namespace BankApi.Controllers
     public class BalanceController : ControllerBase
     {
         private readonly IBalanceRepository _balanceRepository;
+        private readonly ILogger<BalanceController> _logger;
 
-        public BalanceController(IBalanceRepository balanceRepository)
+        public BalanceController(IBalanceRepository balanceRepository, ILogger<BalanceController> logger)
         {
             _balanceRepository = balanceRepository;
+            this._logger = logger;
         }
 
 
@@ -24,6 +27,8 @@ namespace BankApi.Controllers
         {
             try
             {
+                _logger.LogInformation("Balance event called for account: {0}", account_id);
+
                 return Ok(_balanceRepository.Get(account_id).balance_value);
             }
             catch (KeyNotFoundException e)
