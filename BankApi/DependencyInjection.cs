@@ -8,7 +8,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
 
         public static IServiceCollection AddApi(this IServiceCollection services)
-        {            
+        {
             services.AddSwaggerGen(c =>
             {
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

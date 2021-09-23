@@ -1,9 +1,10 @@
 ﻿using BankApplication.Interface;
+using BankApplication.Resource;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
- 
+
 namespace BankApi.Controllers
 {
     [Route("api/v1/[controller]")]
@@ -27,7 +28,7 @@ namespace BankApi.Controllers
         {
             try
             {
-                _logger.LogInformation("Balance event called for account: {0}", account_id);
+                _logger.LogInformation(SharedResource.BalanceEventCalled, account_id);
 
                 return Ok(_balanceRepository.Get(account_id).balance_value);
             }

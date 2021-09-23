@@ -1,5 +1,6 @@
 ﻿using BankApi.Dtos.Request;
 using BankApplication.Interface;
+using BankApplication.Resource;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -25,7 +26,7 @@ namespace BankApi.Controllers
         {            
             try
             {
-                _logger.LogInformation("Action called: type: {0}, Origin: {1}, Destination: {2}", account_event.Type, account_event.Origin, account_event.Destination);
+                _logger.LogInformation(SharedResource.ActionCalled, account_event.Type, account_event.Origin, account_event.Destination);
 
                 _accountInvoker.SetCommand(new BankApplication.AccountCommands.Helper.AccountEvent()
                 {
@@ -41,7 +42,7 @@ namespace BankApi.Controllers
             }
             catch (KeyNotFoundException e)
             {
-                _logger.LogInformation("KeyNotFound for action: type: {0}, Origin: {1}, Destination: {2}", account_event.Type, account_event.Origin, account_event.Destination);
+                _logger.LogInformation(SharedResource.KeyNotFound, account_event.Type, account_event.Origin, account_event.Destination);
 
                 return NotFound(0);
             }

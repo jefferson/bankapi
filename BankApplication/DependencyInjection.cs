@@ -1,12 +1,9 @@
-﻿using BankApplication.AccountCommands;
+﻿using BankApplication;
+using BankApplication.AccountCommands;
 using BankApplication.AccountCommands.Helper;
 using BankApplication.Interface;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace BankApplication
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class DependencyInjection
     {
