@@ -64,7 +64,7 @@ If you would like to run this API, please, visit the address below:
 ``https://localhost:5001/index.html``
 
 
-## How to Test
+## How to Run
 Run the command below in the root directory:
 
 ```cmd
@@ -103,6 +103,25 @@ $ docker run -dp 5001:80 bank-api
 ```
 
 In this case, the application wil run inside docker on port *80* but in host envoriment will run on port *5001*
+
+## How to Test
+
+Access the root direcotry of project: 
+```cmd
+cd ~\source\repos\BankApi
+```
+
+Run the command below in the root directory:
+
+```cmd
+dotnet test
+...
+Iniciando execução de teste, espere...
+1 arquivos de teste no total corresponderam ao padrão especificado.
+
+Aprovado!  - Com falha:     0, Aprovado:    15, Ignorado:     0, Total:    15, Duração: 153 ms - TestBankApi.dll (netcoreapp3.1)
+
+```
 
 ## Requirements
 
