@@ -5,17 +5,17 @@ using System.Collections.Generic;
 
 namespace BankApplication.AccountCommands
 {
-    public class DepositCommand : Command
+    public class WithdrawCommand : Command
     {
         public override void Execute(IAccountRepository accountRepository, AccountEvent accountEvent)
         {
-            if (accountRepository.Exist(accountEvent.Destination))
+            if (accountRepository.Exist(accountEvent.Origin))
             {
                 DepositValue(accountRepository, accountEvent);
             }
             else
             {
-                CreateAccountWithInitialBalance(accountRepository, accountEvent);
+                throw new KeyNotFoundException();
             }
         }
 

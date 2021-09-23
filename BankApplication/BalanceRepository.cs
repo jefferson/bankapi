@@ -14,7 +14,7 @@ namespace BankApplication
             _dataBucket = dataBucket;
         }
 
-        public Balance Get(long id)
+        public Balance Get(string id)
         {
             if(_dataBucket.Contains(id))
             {
@@ -26,7 +26,7 @@ namespace BankApplication
             }
         }
 
-        public void Set(long id, Balance balance)
+        public void Set(string id, Balance balance)
         {
             try
             {
@@ -45,11 +45,11 @@ namespace BankApplication
             }
         }        
 
-        public void Create(long id, Balance balance) => _dataBucket.Create(id, balance);
+        public void Create(string id, Balance balance) => _dataBucket.Create(id, balance);
 
         public void Dispose() => _dataBucket.Dispose();
 
-        public bool Exist(long id)
+        public bool Exist(string id)
         {
             return _dataBucket.Contains(id);
         }

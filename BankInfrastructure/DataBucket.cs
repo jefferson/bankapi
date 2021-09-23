@@ -8,26 +8,26 @@ namespace BankInfrastructure
 {
     public class DataBucket : IDataBucket
     {
-        private static readonly Dictionary<long, Balance> balanceInMemory = new Dictionary<long, Balance>();
+        private static readonly Dictionary<string, Balance> balanceInMemory = new Dictionary<string, Balance>();
 
-        public bool Contains(long id)
+        public bool Contains(string id)
         {
             return balanceInMemory.ContainsKey(id);
         }        
 
-        public Balance Get(long id)
+        public Balance Get(string id)
         {
             return balanceInMemory[id];
         }
 
-        public void SetValue(long id, decimal balance_value)
+        public void SetValue(string id, decimal balance_value)
         {
             balanceInMemory[id].balance_value = balance_value;
         }
 
         public void Dispose() => balanceInMemory.Clear();
 
-        public void Create(long id, Balance balance)
+        public void Create(string id, Balance balance)
         {
             balanceInMemory.Add(id, balance);
         }

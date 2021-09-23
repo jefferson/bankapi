@@ -7,12 +7,12 @@ namespace BankApplication.Interface
 {
     public interface IDataBucket: IDisposable
     {
-        bool Contains(long id);
+        bool Contains(string id);
 
-        void SetValue(long id, decimal balance_value);
+        void SetValue(string id, decimal balance_value);
 
-        void Create(long id, Balance balance);
+        void Create(string id, Balance balance);
 
-        Balance Get(long id);
+        Balance Get(string id);
     }
 }

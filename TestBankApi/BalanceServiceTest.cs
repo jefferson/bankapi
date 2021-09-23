@@ -25,7 +25,7 @@ namespace TestBankApi
         public void BalanceDoesntExistTest()
         {
             var balance = mockRepository.Object;
-            Invoking(() => balance.Get(0)).Should().Throw<KeyNotFoundException>();
+            Invoking(() => balance.Get("0")).Should().Throw<KeyNotFoundException>();
         }
 
         [Fact]
@@ -33,13 +33,13 @@ namespace TestBankApi
         {
             var balance = mockRepository.Object;
 
-            balance.Create(1);
+            balance.Create("1", new Domain.Entities.Balance() { balance_value = 0 });
 
-            balance.Set(1, new Domain.Entities.Balance() { 
+            balance.Set("1", new Domain.Entities.Balance() { 
                 balance_value = 10
             });
 
-            balance.Get(1).balance_value.Should().Be(10);
+            balance.Get("1").balance_value.Should().Be(10);
         }
 
         [Fact]
@@ -47,16 +47,16 @@ namespace TestBankApi
         {
             var balance = mockRepository.Object;
 
-            balance.Create(1);
+            balance.Create("1", new Domain.Entities.Balance() { balance_value = 0 });
 
-            balance.Set(1, new Domain.Entities.Balance()
+            balance.Set("1", new Domain.Entities.Balance()
             {
                 balance_value = 10
             });
 
             balance.Dispose();
 
-            Invoking(() => balance.Get(1)).Should().Throw<KeyNotFoundException>();
+            Invoking(() => balance.Get("1")).Should().Throw<KeyNotFoundException>();
 
         }
 

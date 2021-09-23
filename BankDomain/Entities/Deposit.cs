@@ -6,7 +6,7 @@ namespace BankDomain.Entities
 {
     public class Deposit
     {
-        public long id { get; set; }
+        public string id { get; set; }
 
         public decimal balance { get; set; }
     }

@@ -7,11 +7,11 @@ namespace BankApplication.Interface
 {
     public interface IAccountRepository: IDisposable
     {
-        void Create(long id, Balance balance);
+        void Create(string id, Balance balance);
 
-        void UpdateBalance(long id, Balance balance);
+        void UpdateBalance(string id, Balance balance);
 
-        bool Exist(long id);
-        Balance Get(long id);
+        bool Exist(string id);
+        Balance Get(string id);
     }
 }

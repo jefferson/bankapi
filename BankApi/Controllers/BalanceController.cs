@@ -20,7 +20,7 @@ namespace BankApi.Controllers
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(decimal))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(decimal))]
-        public IActionResult Get([FromQuery(Name = "account_id")] long account_id)
+        public IActionResult Get([FromQuery(Name = "account_id")] string account_id)
         {
             try
             {

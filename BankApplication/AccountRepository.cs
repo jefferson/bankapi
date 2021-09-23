@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BankApplication
 {
-    class AccountRepository : IAccountRepository
+    public class AccountRepository : IAccountRepository
     {
         private readonly IBalanceRepository _balanceRepository;
 
@@ -15,12 +15,12 @@ namespace BankApplication
             _balanceRepository = balanceRepository;
         }
 
-        public void Create(long id, Balance balance)
+        public void Create(string id, Balance balance)
         {
             _balanceRepository.Create(id, balance);            
         }        
 
-        public void UpdateBalance(long id, Balance balance)
+        public void UpdateBalance(string id, Balance balance)
         {
             _balanceRepository.Set(id, balance);
         }
@@ -30,12 +30,12 @@ namespace BankApplication
             throw new NotImplementedException();
         }
 
-        public bool Exist(long id)
+        public bool Exist(string id)
         {
             return _balanceRepository.Exist(id);
         }
 
-        public Balance Get(long id)
+        public Balance Get(string id)
         {
             return _balanceRepository.Get(id);
         }

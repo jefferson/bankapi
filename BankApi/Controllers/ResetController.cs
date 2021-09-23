@@ -22,7 +22,7 @@ namespace BankApi.Controllers
 
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
-        public IActionResult Post(AccountEvent accountEvent)
+        public IActionResult Post()
         {
             _balanceRepository.Dispose();
            return Ok("OK");

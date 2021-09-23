@@ -8,8 +8,8 @@ namespace BankApi.Dtos.Request
     public class EventRequest
     {
         public string Type { get; set; }
-        public long Destination { get; set; }
+        public string Destination { get; set; }
         public decimal Amount { get; set; }
-        public long Origin { get; set; }
+        public string Origin { get; set; }
     }
 }
