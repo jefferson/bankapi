@@ -11,7 +11,7 @@ namespace BankApplication.Interface
 
         void SetValue(long id, decimal balance_value);
 
-        void Create(long id);
+        void Create(long id, Balance balance);
 
         Balance Get(long id);
     }

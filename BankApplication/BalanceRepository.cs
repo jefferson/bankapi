@@ -45,8 +45,13 @@ namespace BankApplication
             }
         }        
 
-        public void Create(long id) => _dataBucket.Create(id);
+        public void Create(long id, Balance balance) => _dataBucket.Create(id, balance);
 
         public void Dispose() => _dataBucket.Dispose();
+
+        public bool Exist(long id)
+        {
+            return _dataBucket.Contains(id);
+        }
     }
 }

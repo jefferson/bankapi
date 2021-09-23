@@ -27,9 +27,9 @@ namespace BankInfrastructure
 
         public void Dispose() => balanceInMemory.Clear();
 
-        public void Create(long id)
+        public void Create(long id, Balance balance)
         {
-            balanceInMemory.Add(id, new Balance());
+            balanceInMemory.Add(id, balance);
         }
     }
 }

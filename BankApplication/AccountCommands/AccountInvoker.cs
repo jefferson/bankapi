@@ -21,7 +21,6 @@ namespace BankApplication.AccountCommands
             _action = CommandFactory.Build(accountEvent);
         }
 
-
         public void ExecuteCommand()
         {
             _accountReceiver.ExecuteCommand(_action.accountEvent, _action.command);

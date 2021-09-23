@@ -1,5 +1,4 @@
 ﻿using BankApi.Dtos.Request;
-using BankApi.Dtos.Response;
 using BankApplication.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +21,9 @@ namespace BankApi.Controllers
         {
             _accountInvoker.SetCommand(new BankApplication.AccountCommands.Helper.AccountEvent()
             {
-                Type = account_event.Type
+                Type = account_event.Type,
+                Balance = account_event.Amount,
+                Destination = account_event.Destination
             });
 
             _accountInvoker.ExecuteCommand();

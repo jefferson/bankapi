@@ -9,8 +9,10 @@ namespace BankApplication.Interface
     {
         Balance Get(long id);
 
-        void Create(long id);
+        void Create(long id, Balance balance);
 
         void Set(long id, Balance balance);
+
+        bool Exist(long id);
     }
 }

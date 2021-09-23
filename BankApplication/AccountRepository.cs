@@ -15,9 +15,9 @@ namespace BankApplication
             _balanceRepository = balanceRepository;
         }
 
-        public void Create(long id)
+        public void Create(long id, Balance balance)
         {
-            _balanceRepository.Create(id);            
+            _balanceRepository.Create(id, balance);            
         }        
 
         public void UpdateBalance(long id, Balance balance)
@@ -28,6 +28,16 @@ namespace BankApplication
         public void Dispose()
         {
             throw new NotImplementedException();
+        }
+
+        public bool Exist(long id)
+        {
+            return _balanceRepository.Exist(id);
+        }
+
+        public Balance Get(long id)
+        {
+            return _balanceRepository.Get(id);
         }
     }
 }
