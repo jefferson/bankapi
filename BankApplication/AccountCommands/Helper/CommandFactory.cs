@@ -12,6 +12,9 @@ namespace BankApplication.AccountCommands.Helper
 
             switch (accountEvent.Type)
             {
+                case "transfer":
+                    command = new TransferCommand();
+                    break;
                 case "withdraw":
                     command = new WithdrawCommand();
                     break;

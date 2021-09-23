@@ -11,7 +11,7 @@ namespace BankApplication.AccountCommands
         {
             if (accountRepository.Exist(accountEvent.Origin))
             {
-                WithdrawtValue(accountRepository, accountEvent);
+                WithdrawValue(accountRepository, accountEvent);
             }
             else
             {
@@ -19,7 +19,7 @@ namespace BankApplication.AccountCommands
             }
         }
 
-        private void WithdrawtValue(IAccountRepository accountRepository, AccountEvent accountEvent)
+        private void WithdrawValue(IAccountRepository accountRepository, AccountEvent accountEvent)
         {
             var currentBalance = accountRepository.Get(accountEvent.Origin);
 
