@@ -32,7 +32,7 @@ namespace BankApi.Controllers
 
                 _accountInvoker.ExecuteCommand();
 
-                return Ok(_accountInvoker.GetResult());
+                return StatusCode( StatusCodes.Status201Created, _accountInvoker.GetResult());
             }
             catch (KeyNotFoundException e)
             {

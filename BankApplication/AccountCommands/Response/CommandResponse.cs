@@ -41,7 +41,7 @@ namespace BankApplication.Response
     public class Origin
     {
         public string id { get; set; }
-        public int balance { get; set; }
+        public decimal balance { get; set; }
     }
 
     #endregion

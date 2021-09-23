@@ -21,7 +21,28 @@ namespace BankApplication.AccountCommands
 
         private void WithdrawtValue(IAccountRepository accountRepository, AccountEvent accountEvent)
         {
+            var currentBalance = accountRepository.Get(accountEvent.Origin);
 
+            var newBalance = currentBalance.balance_value - accountEvent.Amount;
+
+            accountRepository.UpdateBalance(accountEvent.Origin, new Domain.Entities.Balance()
+            {
+                balance_value = newBalance
+            });
+
+            var result = new CommandResponse()
+            {
+                Withdraw = new WithdrawResponse()
+                {
+                    origin = new Origin()
+                    {
+                        id = accountEvent.Origin,
+                        balance = newBalance
+                    }
+                }
+            };
+
+            this.Result = result.Withdraw;
         }
 
     }

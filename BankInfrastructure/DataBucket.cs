@@ -6,9 +6,14 @@ using System.Text;
 
 namespace BankInfrastructure
 {
-    public class DataBucket : IDataBucket
+    public class DataBucket : IDataBucket, IDisposable
     {
-        private static readonly Dictionary<string, Balance> balanceInMemory = new Dictionary<string, Balance>();
+        private readonly Dictionary<string, Balance> balanceInMemory;
+
+        public DataBucket()
+        {
+            balanceInMemory = new Dictionary<string, Balance>();
+        }
 
         public bool Contains(string id)
         {
