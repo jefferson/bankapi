@@ -3,9 +3,9 @@ using BankApplication.Interface;
 
 namespace BankApplication.AccountCommands
 {
-    public abstract class Command
+    public interface ICommand
     {
-        public object Result { get; set; }
+        public object Result { get; }
         public abstract void Execute(IAccountRepository accountRepository, AccountEvent accountEvent);
     }
 }

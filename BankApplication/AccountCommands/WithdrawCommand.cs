@@ -5,9 +5,13 @@ using System.Collections.Generic;
 
 namespace BankApplication.AccountCommands
 {
-    public class WithdrawCommand : Command
+    public class WithdrawCommand : ICommand
     {
-        public override void Execute(IAccountRepository accountRepository, AccountEvent accountEvent)
+        private WithdrawResponse _Result;
+
+        public object Result => _Result;
+
+        public void Execute(IAccountRepository accountRepository, AccountEvent accountEvent)
         {
             if (accountRepository.Exist(accountEvent.Origin))
             {
@@ -42,7 +46,7 @@ namespace BankApplication.AccountCommands
                 }
             };
 
-            this.Result = result.Withdraw;
+            this._Result = result.Withdraw;
         }
 
     }

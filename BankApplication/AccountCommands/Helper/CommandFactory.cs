@@ -1,23 +1,32 @@
 ﻿using BankApplication.Interface;
+using System;
+using System.Reflection;
 
 namespace BankApplication.AccountCommands.Helper
 {
     public class CommandFactory : ICommandFactory
     {
-        public (AccountEvent accountEvent, Command command) Build(AccountEvent accountEvent)
+        private readonly IServiceProvider serviceProvider;
+
+        public CommandFactory(IServiceProvider serviceProvider)
         {
-            Command command = null;
+            this.serviceProvider = serviceProvider;
+        }
+        public (AccountEvent accountEvent, ICommand command) ResolveCommand(AccountEvent accountEvent)
+        {
+            
+            ICommand command = null;
 
             switch (accountEvent.Type)
             {
                 case EventEnum.Transfer:
-                    command = new TransferCommand();
+                    command =  resolveInstance<TransferCommand>();
                     break;
                 case EventEnum.Withdraw:
-                    command = new WithdrawCommand();
+                    command = resolveInstance<WithdrawCommand>();
                     break;
                 case EventEnum.Deposit:
-                    command = new DepositCommand();
+                    command = resolveInstance<DepositCommand>();
                     break;
                 default:
                     break;
@@ -25,5 +34,12 @@ namespace BankApplication.AccountCommands.Helper
 
             return (accountEvent, command);
         }
+
+
+        private ICommand resolveInstance<T>()
+        {
+            return (ICommand)serviceProvider.GetService(typeof(T));
+        }
+
     }
 }

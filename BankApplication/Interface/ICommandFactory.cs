@@ -5,6 +5,6 @@ namespace BankApplication.Interface
 {
     public interface ICommandFactory
     {
-        (AccountEvent accountEvent, Command command) Build(AccountEvent accountEvent);
+        (AccountEvent accountEvent, ICommand command) ResolveCommand(AccountEvent accountEvent);
     }
 }

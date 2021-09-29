@@ -5,6 +5,6 @@ namespace BankApplication.Interface
 {
     public interface IAccountReceiver
     {
-        void ExecuteCommand(AccountEvent accountEvent, Command command);
+        void ExecuteCommand(AccountEvent accountEvent, ICommand command);
     }
 }

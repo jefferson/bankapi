@@ -63,13 +63,6 @@ If you would like to run this API, please, visit the address below:
 
 ``https://localhost:5001/index.html``
 
-
-## How to Run
-Run the command below in the root directory:
-
-```cmd
-dotnet run
-```
 ## Run inside Docker
 
 Access the root direcotry of project: 

@@ -5,9 +5,13 @@ using System.Collections.Generic;
 
 namespace BankApplication.AccountCommands
 {
-    public class DepositCommand : Command
+    public class DepositCommand : ICommand
     {
-        public override void Execute(IAccountRepository accountRepository, AccountEvent accountEvent)
+        private DepositResponse _Result;
+
+        public object Result { get => _Result; }
+
+        public void Execute(IAccountRepository accountRepository, AccountEvent accountEvent)
         {
             if (accountRepository.Exist(accountEvent.Destination))
             {
@@ -42,7 +46,7 @@ namespace BankApplication.AccountCommands
                 }
             };
 
-            this.Result = result.Deposit;
+            this._Result = result.Deposit;
         }
 
         private void CreateAccountWithInitialBalance(IAccountRepository accountRepository, AccountEvent accountEvent)
@@ -64,7 +68,7 @@ namespace BankApplication.AccountCommands
                 }
             };
 
-            this.Result = result.Deposit;
+            this._Result = result.Deposit;
         }
     }
 }

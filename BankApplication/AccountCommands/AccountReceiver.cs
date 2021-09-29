@@ -12,7 +12,7 @@ namespace BankApplication.AccountCommands
             this.accountRepository = accountRepository;
         }
 
-        public void ExecuteCommand(AccountEvent accountEvent, Command command)
+        public void ExecuteCommand(AccountEvent accountEvent, ICommand command)
         {
             command.Execute(accountRepository, accountEvent);
         }

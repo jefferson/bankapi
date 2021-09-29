@@ -36,7 +36,7 @@ namespace TestBankApi
         {
             var commandFactory = new CommandFactory();
 
-            var command = commandFactory.Build(new AccountEvent()
+            var command = commandFactory.ResolveCommand(new AccountEvent()
             {
                 Type = EventEnum.Deposit
             });
@@ -49,7 +49,7 @@ namespace TestBankApi
         {
             var commandFactory = new CommandFactory();
 
-            var command = commandFactory.Build(new AccountEvent()
+            var command = commandFactory.ResolveCommand(new AccountEvent()
             {
                 Type = EventEnum.Withdraw
             });
@@ -62,7 +62,7 @@ namespace TestBankApi
         {
             var commandFactory = new CommandFactory();
 
-            var command = commandFactory.Build(new AccountEvent()
+            var command = commandFactory.ResolveCommand(new AccountEvent()
             {
                 Type = EventEnum.Transfer
             });
