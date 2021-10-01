@@ -1,4 +1,5 @@
-﻿using BankApplication.AccountCommands.Helper;
+﻿using BankApplication;
+using BankApplication.AccountCommands.Helper;
 using BankApplication.Interface;
 using BankApplication.Resource;
 using Microsoft.AspNetCore.Http;
@@ -15,12 +16,12 @@ namespace BankApi.Controllers
     [ApiController]
     public class ResetController : Controller
     {
-        private readonly IBalanceRepository _balanceRepository;
+        private readonly IResetService _resetService;
         private readonly ILogger<ResetController> _logger;
 
-        public ResetController(IBalanceRepository balanceRepository, ILogger<ResetController> logger)
+        public ResetController(IResetService resetService, ILogger<ResetController> logger)
         {
-            _balanceRepository = balanceRepository;
+            this._resetService = resetService;
             this._logger = logger;
         }
 
@@ -29,7 +30,7 @@ namespace BankApi.Controllers
         public IActionResult Post()
         {
             _logger.LogInformation(SharedResource.ResetMessage);
-            _balanceRepository.Dispose();
+            _resetService.Dispose();
            return StatusCode(StatusCodes.Status200OK, "OK");
         }
     }

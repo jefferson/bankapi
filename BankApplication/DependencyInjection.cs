@@ -24,6 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<IAccountRepository, AccountRepository>();
             services.AddSingleton<IAccountReceiver, AccountReceiver>();
             services.AddSingleton<IAccountInvoker, AccountInvoker>();
+            services.AddSingleton<IResetService, ResetService>();
 
             return services;
         }
