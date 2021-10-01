@@ -79,11 +79,29 @@ namespace BankApplication.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to System internal error.
+        /// </summary>
+        public static string InternalError {
+            get {
+                return ResourceManager.GetString("InternalError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to KeyNotFound for action: type: {0}, Origin: {1}, Destination: {2}.
         /// </summary>
         public static string KeyNotFound {
             get {
                 return ResourceManager.GetString("KeyNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insufficient Funds.
+        /// </summary>
+        public static string NoBalance {
+            get {
+                return ResourceManager.GetString("NoBalance", resourceCulture);
             }
         }
         

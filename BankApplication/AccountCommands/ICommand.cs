@@ -5,7 +5,7 @@ namespace BankApplication.AccountCommands
 {
     public interface ICommand
     {
-        public object Result { get; }
+        public (int StatusCodes, object Content) Result { get; }
         public abstract void Execute(IAccountRepository accountRepository, AccountEvent accountEvent);
     }
 }

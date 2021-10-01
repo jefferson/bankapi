@@ -1,15 +1,16 @@
 ﻿using BankApplication.AccountCommands.Helper;
 using BankApplication.Interface;
 using BankApplication.Response;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 
 namespace BankApplication.AccountCommands
 {
     public class TransferCommand : ICommand
     {
-        private TransferResponse _Result;
+        private (int StatusCodes, object Content) _Result;
 
-        public object Result => _Result;
+        (int StatusCodes, object Content) ICommand.Result => _Result;
 
         public void Execute(IAccountRepository accountRepository, AccountEvent accountEvent)
         {
@@ -20,7 +21,7 @@ namespace BankApplication.AccountCommands
             }
             else
             {
-                throw new KeyNotFoundException();
+                this._Result = (StatusCodes.Status404NotFound, 0);
             }
         }
 
@@ -73,7 +74,7 @@ namespace BankApplication.AccountCommands
                 }
             };
 
-            this._Result = result.Transfer;
+            this._Result = (StatusCodes.Status201Created, result.Transfer);
         }
 
     }

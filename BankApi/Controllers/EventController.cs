@@ -4,6 +4,7 @@ using BankApplication.Resource;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 
 namespace BankApi.Controllers
@@ -23,7 +24,7 @@ namespace BankApi.Controllers
 
         [HttpPost()]
         public IActionResult Post(EventRequest account_event)
-        {            
+        {
             try
             {
                 _logger.LogInformation(SharedResource.ActionCalled, account_event.Type, account_event.Origin, account_event.Destination);
@@ -38,14 +39,17 @@ namespace BankApi.Controllers
 
                 _accountInvoker.ExecuteCommand();
 
-                return StatusCode( StatusCodes.Status201Created, _accountInvoker.GetResult());
-            }
-            catch (KeyNotFoundException e)
-            {
-                _logger.LogInformation(SharedResource.KeyNotFound, account_event.Type, account_event.Origin, account_event.Destination);
+                var result = _accountInvoker.GetResult();
 
-                return NotFound(0);
+                return StatusCode(result.StatusCodes, result.Content);
+
             }
+            catch (Exception e)
+            {
+                _logger.LogError(SharedResource.InternalError, account_event.Type, account_event.Origin, account_event.Destination, e);
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = SharedResource.InternalError});
+            }
+
         }
     }
 }

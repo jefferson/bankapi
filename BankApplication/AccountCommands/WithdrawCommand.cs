@@ -1,15 +1,16 @@
 ﻿using BankApplication.AccountCommands.Helper;
 using BankApplication.Interface;
+using BankApplication.Resource;
 using BankApplication.Response;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace BankApplication.AccountCommands
 {
     public class WithdrawCommand : ICommand
     {
-        private WithdrawResponse _Result;
+        private (int StatusCodes, object Content) _Result;
 
-        public object Result => _Result;
+        (int StatusCodes, object Content) ICommand.Result => _Result;
 
         public void Execute(IAccountRepository accountRepository, AccountEvent accountEvent)
         {
@@ -19,7 +20,7 @@ namespace BankApplication.AccountCommands
             }
             else
             {
-                throw new KeyNotFoundException();
+                this._Result = (StatusCodes.Status404NotFound, 0);
             }
         }
 
@@ -28,6 +29,12 @@ namespace BankApplication.AccountCommands
             var currentBalance = accountRepository.Get(accountEvent.Origin);
 
             var newBalance = currentBalance.balance_value - accountEvent.Amount;
+
+            if(accountEvent.Amount > currentBalance.balance_value )
+            {
+                this._Result = (StatusCodes.Status201Created, SharedResource.NoBalance);
+                return;
+            }
 
             accountRepository.UpdateBalance(accountEvent.Origin, new Domain.Entities.Balance()
             {
@@ -46,7 +53,7 @@ namespace BankApplication.AccountCommands
                 }
             };
 
-            this._Result = result.Withdraw;
+            this._Result = (StatusCodes.Status201Created, result.Withdraw);
         }
 
     }

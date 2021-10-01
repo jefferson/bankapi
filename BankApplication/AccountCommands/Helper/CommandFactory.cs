@@ -1,9 +1,9 @@
-﻿using BankApplication.Interface;
-using System;
-using System.Reflection;
-
-namespace BankApplication.AccountCommands.Helper
+﻿namespace BankApplication.AccountCommands.Helper
 {
+    using BankApplication.Interface;
+    using System;
+    using System.Reflection;
+
     public class CommandFactory : ICommandFactory
     {
         private readonly IServiceProvider serviceProvider;

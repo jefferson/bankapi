@@ -28,7 +28,7 @@ namespace BankApplication.AccountCommands
             _accountReceiver.ExecuteCommand(_action.accountEvent, _action.command);
         }
 
-        public object GetResult()
+        public (int StatusCodes, object Content) GetResult()
         {
             return _action.command.Result;
         }

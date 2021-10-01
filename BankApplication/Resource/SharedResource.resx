@@ -123,8 +123,14 @@
   <data name="BalanceEventCalled" xml:space="preserve">
     <value>Balance event called for account: {0}</value>
   </data>
+  <data name="InternalError" xml:space="preserve">
+    <value>System internal error</value>
+  </data>
   <data name="KeyNotFound" xml:space="preserve">
     <value>KeyNotFound for action: type: {0}, Origin: {1}, Destination: {2}</value>
+  </data>
+  <data name="NoBalance" xml:space="preserve">
+    <value>Insufficient Funds</value>
   </data>
   <data name="ResetMessage" xml:space="preserve">
     <value>Application was reseted.</value>
