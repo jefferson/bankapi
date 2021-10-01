@@ -7,6 +7,7 @@ using BankApplication;
 using BankApplication.AccountCommands;
 using BankInfrastructure;
 using BankApplication.AccountCommands.Helper;
+using Moq;
 
 namespace TestBankApi
 {
@@ -34,7 +35,13 @@ namespace TestBankApi
         [Fact]
         public void CreateInstaceOfDepositCommandShouldBeSuccess()
         {
-            var commandFactory = new CommandFactory();
+            var serviceProvider = new Mock<IServiceProvider>();
+
+            serviceProvider
+                .Setup(x => x.GetService(typeof(DepositCommand)))
+                .Returns(new DepositCommand());
+
+            var commandFactory = new CommandFactory(serviceProvider.Object);
 
             var command = commandFactory.ResolveCommand(new AccountEvent()
             {
@@ -47,7 +54,13 @@ namespace TestBankApi
         [Fact]
         public void CreateInstaceOfWithdrawCommandShouldBeSuccess()
         {
-            var commandFactory = new CommandFactory();
+            var serviceProvider = new Mock<IServiceProvider>();
+
+            serviceProvider
+                .Setup(x => x.GetService(typeof(WithdrawCommand)))
+                .Returns(new WithdrawCommand());
+
+            var commandFactory = new CommandFactory(serviceProvider.Object);
 
             var command = commandFactory.ResolveCommand(new AccountEvent()
             {
@@ -60,7 +73,13 @@ namespace TestBankApi
         [Fact]
         public void CreateInstaceOfTransferCommandShouldBeSuccess()
         {
-            var commandFactory = new CommandFactory();
+            var serviceProvider = new Mock<IServiceProvider>();
+
+            serviceProvider
+                .Setup(x => x.GetService(typeof(TransferCommand)))
+                .Returns(new TransferCommand());
+
+            var commandFactory = new CommandFactory(serviceProvider.Object);
 
             var command = commandFactory.ResolveCommand(new AccountEvent()
             {

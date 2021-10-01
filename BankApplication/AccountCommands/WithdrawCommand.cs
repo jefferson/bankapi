@@ -32,7 +32,7 @@ namespace BankApplication.AccountCommands
 
             if(accountEvent.Amount > currentBalance.balance_value )
             {
-                this._Result = (StatusCodes.Status201Created, SharedResource.NoBalance);
+                this._Result = (StatusCodes.Status406NotAcceptable, SharedResource.NoBalance);
                 return;
             }
 

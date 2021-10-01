@@ -9,6 +9,7 @@ using System.Text;
 using Xunit;
 using FluentAssertions;
 using BankApplication.AccountCommands.Helper;
+using Moq;
 
 namespace TestBankApi
 {
@@ -23,7 +24,15 @@ namespace TestBankApi
             balanceRepositoy = new BalanceRepository(dataBucket);
             var accountRepositoy = new AccountRepository(balanceRepositoy);
             var accountReceiver = new AccountReceiver(accountRepositoy);
-            var commandFactory = new CommandFactory();
+
+            var serviceProvider = new Mock<IServiceProvider>();
+
+            serviceProvider
+                .Setup(x => x.GetService(typeof(DepositCommand)))
+                .Returns(new DepositCommand());
+
+            var commandFactory = new CommandFactory(serviceProvider.Object);
+
             accountInvoker = new AccountInvoker(accountReceiver, commandFactory);
         }
 
@@ -41,13 +50,13 @@ namespace TestBankApi
 
             accountInvoker.ExecuteCommand();
 
-            var result = (DepositResponse) accountInvoker.GetResult();
+            var result = accountInvoker.GetResult();
 
-            result.Should().BeOfType(typeof(DepositResponse));
+            result.Content.Should().BeOfType(typeof(DepositResponse));
 
-            result.destination.balance.Should().Be(10);
+            ((DepositResponse)result.Content).destination.balance.Should().Be(10);
 
-            result.destination.id.Should().Be("1");
+            ((DepositResponse)result.Content).destination.id.Should().Be("1");
 
         }
 
@@ -70,13 +79,13 @@ namespace TestBankApi
             accountInvoker.SetCommand(account_event);
             accountInvoker.ExecuteCommand();
 
-            var result = (DepositResponse)accountInvoker.GetResult();
+            var result = accountInvoker.GetResult();
 
-            result.Should().BeOfType(typeof(DepositResponse));
+            result.Content.Should().BeOfType(typeof(DepositResponse));
 
-            result.destination.balance.Should().Be(25);
+            ((DepositResponse)result.Content).destination.balance.Should().Be(25);
 
-            result.destination.id.Should().Be("1");
+            ((DepositResponse)result.Content).destination.id.Should().Be("1");
 
         }
 
